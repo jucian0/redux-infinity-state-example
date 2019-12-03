@@ -33,7 +33,7 @@ const remove: Method<TodosState, number> = (state, payload) =>
   state.filter((todo: Todo) => todo.id !== payload)
 
 
-const fetchPromise: Service<TodosState, undefined> = (state, payload, dispatch) =>
+const fetch: Service<TodosState, undefined> = (state, payload, dispatch) =>
   Axios.get('http://www.hackintoshworld.com/wp-json/wp/v2/posts')
     .then((resp): Array<Post> =>
       resp.data.filter((item: any) => item.slug !== "macos-10-13-4-update")
@@ -64,7 +64,7 @@ export const { actions, reducer } = createState({
     toggle
   },
   services: {
-    fetchPromise
+    fetch
   }
 })
 

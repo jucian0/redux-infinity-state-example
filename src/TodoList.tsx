@@ -22,7 +22,7 @@ const TodoList = () => {
       <form onSubmit={handleSubmit}>
         <input value={inputText} onChange={(e) => setInputText(e.target.value)} />
         <button type="submit">Novo</button>
-        <button type="button" onClick={() =>dispatch(actions.fetchPromise())}>Async Promise</button>
+        <button type="button" onClick={() =>dispatch(actions.fetch())}>Async Promise</button>
         <button type="button" onClick={() => dispatch(actions.reset())}>RESET</button>
       </form>
 
