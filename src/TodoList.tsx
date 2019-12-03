@@ -1,5 +1,5 @@
 import "./styles.css";
-import React,{ useState } from "react";
+import React,{ useState, FormEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "./store";
 import {actions} from "./store/todos/reducer";
@@ -10,7 +10,7 @@ const TodoList = () => {
   const todos = useSelector((state:AppState) => state.todos);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(actions.add(inputText))
     setInputText('');
@@ -18,7 +18,7 @@ const TodoList = () => {
 
   return (
     <section>
-      <h2>Redux Async State</h2>
+      <h2>Redux Infinity State</h2>
       <form onSubmit={handleSubmit}>
         <input value={inputText} onChange={(e) => setInputText(e.target.value)} />
         <button type="submit">Novo</button>
