@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import reducers from "./todos";
 import { Todo } from "./todos/reducer";
-import { middlewareAsync } from "redux-infinity-state";
+import { asyncActionMiddleware } from "redux-infinity-state";
 
 const composeEnhancers = composeWithDevTools({});
 
@@ -21,7 +21,7 @@ const store = createStore(
     appState,
     composeEnhancers(
         applyMiddleware(
-            middlewareAsync
+            asyncActionMiddleware
         )
 ));
 
