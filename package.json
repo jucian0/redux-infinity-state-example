@@ -17,7 +17,7 @@
     "redux-async-state": "0.0.2",
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.8",
-    "redux-infinity-state": "^1.0.15",
+    "redux-infinity-state": "^1.0.21",
     "rxjs": "^6.5.3",
     "typescript": "^3.7.2"
   },
