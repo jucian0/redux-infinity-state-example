@@ -1,7 +1,7 @@
 
 import Axios, { AxiosResponse } from 'axios'
 import { from, Subscription } from 'rxjs'
-import {createState, Method, Service} from 'redux-infinity-state'
+import { createState, Method, Service } from 'redux-infinity-state'
 
 export interface Todo {
   id: number
@@ -16,25 +16,25 @@ export interface Post {
 
 export type TodosState = Array<Todo>
 
-const INITIAL_STATE: TodosState = []
+export const INITIAL_STATE: TodosState = []
 
-const add: Method<TodosState, string> = ({state, payload}) =>
+const add: Method<TodosState, string> = ({ state, payload }) =>
   [
     ...state,
     { id: Math.random(), text: payload, complete: false }
   ]
 
-const toggle: Method<TodosState, number> = ({state, payload}) =>
+const toggle: Method<TodosState, number> = ({ state, payload }) =>
   state.map(
     (todo: Todo) =>
       todo.id === payload ? { ...todo, complete: !todo.complete } : todo
   )
 
-const remove: Method<TodosState, number> = ({state, payload}) =>
+const remove: Method<TodosState, number> = ({ state, payload }) =>
   state.filter((todo: Todo) => todo.id !== payload)
 
 
-const fetch: Service<TodosState, undefined> = ({dispatch}) =>
+const fetch: Service<TodosState, undefined> = ({ dispatch }) =>
   Axios.get('http://www.hackintoshworld.com/wp-json/wp/v2/posts')
     .then((resp): Array<Post> =>
       resp.data.filter((item: any) => item.slug !== "macos-10-13-4-update")
@@ -42,23 +42,16 @@ const fetch: Service<TodosState, undefined> = ({dispatch}) =>
     .then(data => dispatch(actions.success(data)))
     .catch(err => dispatch(actions.failure(err.data)))
 
-const fetchRxjs: Service<TodosState, undefined, Subscription> = ({dispatch}) =>
-  from(Axios.get('http://www.hackintoshworld.com/wp-json/wp/v2/posts'))
-    .subscribe(
-      resp => dispatch(actions.success(resp.data)),
-      err => dispatch(actions.failure(err.data))
-    )
-
-const success: Method<TodosState, Array<any>> = ({state, payload}) =>
+const success: Method<TodosState, Array<any>> = ({ state, payload }) =>
   [...state, ...payload.map((item: any) => ({
     id: item.id,
     text: item.slug,
     complete: false
   }))]
 
-const failure: Method<TodosState, any> = ({state}) => state
+const failure: Method<TodosState, any> = ({ state }) => state
 
-const reset:Method<TodosState> = () => INITIAL_STATE
+const reset: Method<TodosState> = () => INITIAL_STATE
 
 export const { actions, reducer } = createState({
   state: INITIAL_STATE,
@@ -72,8 +65,7 @@ export const { actions, reducer } = createState({
     toggle
   },
   services: {
-    fetch,
-    fetchRxjs
+    fetch
   }
 })
 

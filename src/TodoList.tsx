@@ -1,16 +1,16 @@
 import "./styles.css";
-import React,{ useState, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "./store";
-import {actions} from "./store/todos/reducer";
+import { actions } from "./store/states/todos";
 
 const TodoList = () => {
 
   const [inputText, setInputText] = useState('');
-  const todos = useSelector((state:AppState) => state.todos);
+  const todos = useSelector((state: AppState) => state.todos);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(actions.add(inputText))
     setInputText('');
@@ -24,8 +24,7 @@ const TodoList = () => {
       <form onSubmit={handleSubmit}>
         <input value={inputText} onChange={(e) => setInputText(e.target.value)} />
         <button type="submit">Novo</button>
-        <button type="button" onClick={() =>dispatch(actions.fetch())}>Async Promise</button>
-        <button type="button" onClick={() =>dispatch(actions.fetchRxjs())}>Async Observable</button>
+        <button type="button" onClick={() => dispatch(actions.fetch())}>Async Promise</button>
         <button type="button" onClick={() => dispatch(actions.reset())}>RESET</button>
       </form>
 

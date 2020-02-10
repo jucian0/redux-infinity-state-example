@@ -1,28 +1,28 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import reducers from "./todos";
-import { Todo } from "./todos/reducer";
+import reducers from "./states";
+import { Todo } from "./states/todos";
 import { asyncActionMiddleware } from "redux-infinity-state";
 
 const composeEnhancers = composeWithDevTools({});
 
-export interface AppState{
+export interface AppState {
     todos: Array<Todo>
 }
 
 const appState: AppState = {
-    todos:[]
+    todos: []
 }
 
 
 const store = createStore(
-    reducers, 
+    reducers,
     appState,
     composeEnhancers(
         applyMiddleware(
             asyncActionMiddleware
         )
-));
+    ));
 
 export default store;
