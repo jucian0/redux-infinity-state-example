@@ -11,7 +11,7 @@ export interface AppState {
     todos: Array<Todo>
 }
 
-const appState: AppState = {
+export const appState: AppState = {
     todos: []
 }
 

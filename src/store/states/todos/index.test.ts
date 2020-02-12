@@ -5,6 +5,7 @@ import configureMockStore, { MockStore } from 'redux-mock-store'
 import { AnyAction } from "redux"
 
 describe("Test Methods Todos Context", () => {
+
     const todoText = "Todo Test"
 
     it("Test AddTodo", () => {
@@ -64,8 +65,6 @@ describe("Test Methods Todos Context", () => {
 
         expect(hastTodo).toBeTruthy()
     })
-
-
 
 })
 
