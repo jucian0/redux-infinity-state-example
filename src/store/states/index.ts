@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from "redux";
 
-import { reducer } from "./todos";
+import { reducer } from "./user";
 
 export default combineReducers({
-  todos: reducer as Reducer
+  users: reducer as Reducer
 });
